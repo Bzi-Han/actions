@@ -19,4 +19,11 @@ add_subdirectory(third_party/quickjs-cmake)
 
 # build test program
 add_executable(main src/main.cc)
-target_link_libraries(main quickjs)
+
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+    target_link_libraries(main quickjs)
+elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+    target_link_libraries(main quickjs dl pthread)
+else()
+    target_link_libraries(main quickjs)
+endif()
