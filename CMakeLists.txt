@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(test)
+project(main)
 
 set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 set(CMAKE_CXX_STANDARD 20)
@@ -10,7 +10,13 @@ add_definitions(-DUNICODE -D_UNICODE)
 
 include_directories(
     includes
+    modules
+    third_party
 )
 
+# build quickjs static library
+add_subdirectory(third_party/quickjs-cmake)
+
 # build test program
-add_executable(test src/main.cc)
+add_executable(main src/main.cc)
+target_link_libraries(main quickjs)
