@@ -2,6 +2,7 @@
 #define FINALLY_H
 
 #include <type_traits>
+#include <utility>
 
 template <typename callable_t>
 class __FinallyCaller

@@ -8,11 +8,11 @@
 
 name: Microsoft C++ Code Analysis
 
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+# on:
+#   push:
+#     branches: [ "master" ]
+#   pull_request:
+#     branches: [ "master" ]
 
 env:
   # Path to the CMake build directory.
