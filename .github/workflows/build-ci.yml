@@ -29,3 +29,22 @@ jobs:
         with:
           name: v${{ inputs.version-string }}-Release
           path: build/Release/
+
+  build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Build test-program
+        run: |
+          sed -i "s/CONFIGURATION_YOUR_VERSION/${{ inputs.version-string }}/g" includes/config.h
+          cmake -S . -B build
+          cmake --build build --config Release
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: v${{ inputs.version-string }}-Release
+          path: build/main
