@@ -1,0 +1,5 @@
+#ifndef CONFIG_H // !CONFIG_H
+
+#define VERSION "CONFIGURATION_YOUR_VERSION"
+
+#endif // !CONFIG_H

@@ -8,5 +8,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_COMPILE_FEATURES "${CMAKE_CXX_COMPILE_FEATURES} /MT /GR- /utf-8")
 add_definitions(-DUNICODE -D_UNICODE)
 
+include_directories(
+    includes
+)
+
 # build test program
 add_executable(test src/main.cc)

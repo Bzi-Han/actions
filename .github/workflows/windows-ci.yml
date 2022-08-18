@@ -1,14 +1,29 @@
 name: learn-github-actions
 
-on: [push]
+on:
+  workflow_dispatch:
+    inputs:
+      version-string:
+        description: "The version string of the program:"
+        required: true
+        type: string
 
 jobs:
-  build:
+  build-windows:
     runs-on: windows-latest
+
     steps:
       - uses: actions/checkout@v3
+
       - uses: ilammy/msvc-dev-cmd@v1
+
       - name: Build test-program
         run: |
+          sed -i "s/CONFIGURATION_YOUR_VERSION/${{ inputs.version-string }}/g" includes/config.h
           cmake -S . -B build
           cmake --build build --config Release
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: v${{ inputs.version-string }}-Release
+          path: build/Release/
